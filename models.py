@@ -57,11 +57,13 @@ class Text(db.Model):
     comment = db.Column(db.String)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
+    toxicity_score = db.Column(db.String)
 
-    def __init__(self, comment, user_token, id = ''):
+    def __init__(self, comment, toxicity_score, user_token):
         self.id = self.set_id()
         self.comment = comment
         self.user_token = user_token
+        self.toxicity_score = toxicity_score
 
     def __repr__(self):
         return f'The following text has been added to the inventory: {self.comment}'
@@ -72,7 +74,7 @@ class Text(db.Model):
 
 class TextSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'comment']
+        fields = ['id', 'comment', 'toxicity_score']
 
 text_schema = TextSchema()
 texts_schema = TextSchema(many=True)
