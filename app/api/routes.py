@@ -107,17 +107,6 @@ def update_text(current_user_token,id):
 
 
 
-    #response = requests.post(url, params=params, json=data)
-    #result = response.json()
-    #toxicity_score = result["attributeScores"]["TOXICITY"]["summaryScore"]["value"]
-    #print("Toxicity score:", toxicity_score)
-    #text.toxicity_score = str(toxicity_score)
-
-    #db.session.commit()
-    #response = text_schema.dump(text)
-    #return jsonify(response)
-
-
 # DELETE car ENDPOINT
 @api.route('/texts/<id>', methods = ['DELETE'])
 @token_required
